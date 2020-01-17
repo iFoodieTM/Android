@@ -14,6 +14,8 @@ public class LoginActivity extends AppCompatActivity {
 
     TextView texto;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

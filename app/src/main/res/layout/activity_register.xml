@@ -60,13 +60,13 @@
             android:background="@mipmap/ic_launcher_round" />
 
         <Button
+            android:id="@+id/accept"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50sp"
             android:text="Register"
-            android:background="@color/colorRegister"
-            android:onClick="btAccept"/>
+            android:background="@color/colorRegister" />
     </LinearLayout>
 
 

@@ -7,22 +7,45 @@
     android:orientation="vertical"
     tools:context=".LoginActivity">
 
+
+    <EditText
+        android:id="@+id/editMail"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="40sp"
+        android:hint="@string/email"/>
+
+    <EditText
+        android:id="@+id/editPass"
+        android:layout_width="200sp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50sp"
+        android:layout_marginTop="40sp"
+        android:hint="@string/password"/>
+
     <TextView
-        android:id="@+id/textEjemplo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hola mundo" />
+        android:layout_marginLeft="100sp"
+        android:layout_marginTop="100sp"
+        android:onClick="btRegistrar"
+        android:text="Registrar" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="200sp"
+        android:onClick="btRegistrar"
+        android:text="Recupera contraseña" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/ok"
+        android:layout_width="200sp"
         android:layout_height="wrap_content"
-        android:text="registrar"
-        android:onClick="btRegistrar"/>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20sp"
         android:text="Login"
-        android:onClick="btLogin" />
+        android:background="@color/colorLogin"/>
 
 </LinearLayout>

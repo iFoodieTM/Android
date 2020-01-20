@@ -22,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editName;
     EditText editMail;
     EditText editPass;
-    Button accept;
+    Button ok;
 
     Retrofit retrofit;
     BienestarApi bienestarApi;
@@ -35,7 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
         editName = findViewById(R.id.editName);
         editMail = findViewById(R.id.editMail);
         editPass = findViewById(R.id.editPass);
-        accept = findViewById(R.id.accept);
+        ok = findViewById(R.id.ok);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8888/Ruben/Bienestapp/public/index.php/api/") // URL del servidor (API)
@@ -44,7 +44,7 @@ public class RegisterActivity extends AppCompatActivity {
                 .build();
         bienestarApi = retrofit.create(BienestarApi.class);
 
-    accept.setOnClickListener(new View.OnClickListener() {
+    ok.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             btAccept();
@@ -65,15 +65,16 @@ public class RegisterActivity extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 if (nombre.isEmpty() || mail.isEmpty() || pass.isEmpty()){
                     Log.d("Ruben","Error: faltan campos por rellenar");
+                    Toast.makeText(RegisterActivity.this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
                 } else {
-                    Log.d("Ruben","Error: no funciona");
+                    Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
+                    finish();
 
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                
                 Toast.makeText(RegisterActivity.this, "Algo ha ido mal", Toast.LENGTH_SHORT).show();
             }
         });

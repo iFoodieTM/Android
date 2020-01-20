@@ -10,4 +10,8 @@ public interface BienestarApi {
     @FormUrlEncoded
     @POST("register")
     Call<String> postRegister(@Field("name") String name, @Field("email") String email, @Field("password") String password);
+
+    @FormUrlEncoded
+    @POST("login")
+    Call<String> postLogin(@Field("email") String email, @Field("password") String password);
 }

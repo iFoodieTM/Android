@@ -38,7 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         accept = findViewById(R.id.accept);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://localhost:8888/Ruben/Bienestapp/public/index.php/api/") // URL del servidor (API)
+                .baseUrl("http://10.0.2.2:8888/Ruben/Bienestapp/public/index.php/api/") // URL del servidor (API)
                 .addConverterFactory(ScalarsConverterFactory.create()) // Conversor de tipos primitivos
                 .addConverterFactory(GsonConverterFactory.create()) // Conversor de JSON
                 .build();
@@ -55,17 +55,29 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     void btAccept() {
-        String nombre = editName.getText().toString();
-        String mail = editMail.getText().toString();
-        String pass = editPass.getText().toString();
+        final String nombre = editName.getText().toString();
+        final String mail = editMail.getText().toString();
+        final String pass = editPass.getText().toString();
 
-        if (nombre.isEmpty() || mail.isEmpty() || pass.isEmpty()){
-            Log.d("Ruben","Error: faltan campos por rellenar");
-        } else {
-            Call<String> call = bienestarApi.postRegister(nombre, mail, pass);
+        Call<String> call = bienestarApi.postRegister(nombre, mail, pass);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (nombre.isEmpty() || mail.isEmpty() || pass.isEmpty()){
+                    Log.d("Ruben","Error: faltan campos por rellenar");
+                } else {
+                    Log.d("Ruben","Error: no funciona");
 
-            Log.d("Ruben","Error: no funciona");
+                }
+            }
 
-        }
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                
+                Toast.makeText(RegisterActivity.this, "Algo ha ido mal", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }

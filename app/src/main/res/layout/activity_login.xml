@@ -33,10 +33,11 @@
         android:text="Registrar" />
 
     <TextView
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200sp"
-        android:onClick="btRegistrar"
+        android:onClick="btRecover"
         android:text="Recupera contraseña" />
 
     <Button

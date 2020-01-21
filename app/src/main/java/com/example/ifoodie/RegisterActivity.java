@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import retrofit2.Call;
@@ -22,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editName;
     EditText editMail;
     EditText editPass;
+    ImageButton imagePhoto;
     Button ok;
 
     Retrofit retrofit;
@@ -35,10 +37,11 @@ public class RegisterActivity extends AppCompatActivity {
         editName = findViewById(R.id.editName);
         editMail = findViewById(R.id.editMail);
         editPass = findViewById(R.id.editPass);
+        imagePhoto = findViewById(R.id.imagePhoto);
         ok = findViewById(R.id.ok);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8888/Ruben/Bienestapp/public/index.php/api/") // URL del servidor (API)
+                .baseUrl("http://10.0.2.2:8888/Ruben/iFoodie/public/index.php/api/") // URL del servidor (API)
                 .addConverterFactory(ScalarsConverterFactory.create()) // Conversor de tipos primitivos
                 .addConverterFactory(GsonConverterFactory.create()) // Conversor de JSON
                 .build();
@@ -51,6 +54,8 @@ public class RegisterActivity extends AppCompatActivity {
         }
     });
 
+
+
     }
 
 
@@ -58,12 +63,13 @@ public class RegisterActivity extends AppCompatActivity {
         final String nombre = editName.getText().toString();
         final String mail = editMail.getText().toString();
         final String pass = editPass.getText().toString();
+        final String photo = imagePhoto.toString();
 
-        Call<String> call = bienestarApi.postRegister(nombre, mail, pass);
+        Call<String> call = bienestarApi.postRegister(nombre, mail, pass, photo);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (nombre.isEmpty() || mail.isEmpty() || pass.isEmpty()){
+                if (nombre.isEmpty() || mail.isEmpty() || pass.isEmpty() || photo.isEmpty()){
                     Log.d("Ruben","Error: faltan campos por rellenar");
                     Toast.makeText(RegisterActivity.this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
                 } else {

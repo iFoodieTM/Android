@@ -23,6 +23,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editName;
     EditText editMail;
     EditText editPass;
+    EditText editUsername;
     ImageButton imagePhoto;
     Button ok;
 
@@ -37,6 +38,7 @@ public class RegisterActivity extends AppCompatActivity {
         editName = findViewById(R.id.editName);
         editMail = findViewById(R.id.editMail);
         editPass = findViewById(R.id.editPass);
+        editUsername = findViewById(R.id.editUsername);
         imagePhoto = findViewById(R.id.imagePhoto);
         ok = findViewById(R.id.ok);
 
@@ -63,13 +65,15 @@ public class RegisterActivity extends AppCompatActivity {
         final String nombre = editName.getText().toString();
         final String mail = editMail.getText().toString();
         final String pass = editPass.getText().toString();
+        final String userName = editUsername.getText().toString();
         final String photo = imagePhoto.toString();
 
-        Call<String> call = bienestarApi.postRegister(nombre, mail, pass, photo);
+        Call<String> call = bienestarApi.postRegister(nombre, mail, userName, pass, photo);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (nombre.isEmpty() || mail.isEmpty() || pass.isEmpty() || photo.isEmpty()){
+                if (nombre.isEmpty() || mail.isEmpty() || userName.isEmpty()
+                        || pass.isEmpty() || photo.isEmpty()){
                     Log.d("Ruben","Error: faltan campos por rellenar");
                     Toast.makeText(RegisterActivity.this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
                 } else {

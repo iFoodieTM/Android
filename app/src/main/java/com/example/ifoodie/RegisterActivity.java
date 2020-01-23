@@ -26,6 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editUsername;
     ImageButton imagePhoto;
     Button ok;
+    Button back;
 
     Retrofit retrofit;
     BienestarApi bienestarApi;
@@ -39,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
         editMail = findViewById(R.id.editMail);
         editPass = findViewById(R.id.editPass);
         editUsername = findViewById(R.id.editUsername);
+        back = findViewById(R.id.back);
         imagePhoto = findViewById(R.id.imagePhoto);
         ok = findViewById(R.id.ok);
 
@@ -56,8 +58,12 @@ public class RegisterActivity extends AppCompatActivity {
         }
     });
 
-
-
+    back.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            finish();
+        }
+    });
     }
 
 

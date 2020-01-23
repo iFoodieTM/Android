@@ -20,7 +20,7 @@ public class RecoverActivity extends AppCompatActivity {
 
     EditText editMail;
     Button ok;
-
+    Button back;
     Retrofit retrofit;
     BienestarApi bienestarApi;
 
@@ -31,6 +31,7 @@ public class RecoverActivity extends AppCompatActivity {
 
         editMail = findViewById(R.id.editMail);
         ok = findViewById(R.id.ok);
+        back = findViewById(R.id.back);
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8888/Ruben/iFoodie/public/index.php/api/") // URL del servidor (API)
@@ -43,6 +44,13 @@ public class RecoverActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 btRecover();
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }

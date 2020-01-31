@@ -18,6 +18,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="back"
+
             />
 
         <TextView
@@ -42,6 +43,15 @@
             android:layout_marginTop="40sp"
             android:hint="@string/email"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/mailError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="El email no es válido"
+            android:layout_marginLeft="55sp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="invisible"
+        />
 
         <EditText
             android:id="@+id/editUsername"
@@ -51,6 +61,15 @@
             android:layout_marginTop="40sp"
             android:hint="@string/userName"
             android:textSize="20sp" />
+        <TextView
+            android:id="@+id/passError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="El nombre no puede estar vacío"
+            android:layout_marginLeft="55sp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="invisible"
+            />
 
         <EditText
             android:id="@+id/editPass"
@@ -69,13 +88,24 @@
             android:hint="Repetir contraseña"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/userError"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="El nombre no puede estar vacío"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20sp"
+            android:layout_marginTop="20sp"
+            android:textColor="@android:color/holo_red_light"
+            android:visibility="invisible"
+            />
+
 
         <Button
             android:id="@+id/ok"
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="50sp"
             android:text="Register"
             android:background="@color/colorRegister" />
 

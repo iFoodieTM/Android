@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
@@ -26,6 +27,11 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editMail;
     EditText editPass;
     EditText editPass2;
+
+    TextView errorMail;
+    TextView errorUser;
+    TextView errorPass;
+
     EditText editUsername;
     Button ok;
     Button back;
@@ -42,6 +48,11 @@ public class RegisterActivity extends AppCompatActivity {
         editMail = findViewById(R.id.editMail);
         editPass = findViewById(R.id.editPass);
         editPass2 = findViewById(R.id.editPass2);
+
+        errorMail = findViewById(R.id.mailError);
+        errorUser = findViewById(R.id.passError);
+        errorPass = findViewById(R.id.userError);
+
         editUsername = findViewById(R.id.editUsername);
         back = findViewById(R.id.back);
         ok = findViewById(R.id.ok);
@@ -85,17 +96,28 @@ public class RegisterActivity extends AppCompatActivity {
                     if (!isEmailValid(mail)){
                         // no es un email valido
                         checkForm = false;
-                        message += "El email no es válido. ";
+                        errorMail.setVisibility(View.VISIBLE);
+                        errorMail.setText("El email no es válido.");
+                        //message += "El email no es válido. ";
+                    }else{
+
+                        errorMail.setVisibility(View.INVISIBLE);
                     }
                 }else{
                     checkForm = false;
-                    message += "El email esta vacío. ";
+                    errorMail.setVisibility(View.VISIBLE);
+                    errorMail.setText("El email esta vacío.");
+                    //message += "El email esta vacío. ";
                 }
 
                 if (userName.isEmpty()){
                     // el nombre de susuario esta vacio
                     checkForm = false;
-                    message += "El nombre de usuario esta vacío. ";
+                    errorUser.setVisibility(View.VISIBLE);
+                    errorUser.setText("El nombre esta vacío.");
+                    //message += "El nombre de usuario esta vacío. ";
+                }else{
+                    errorUser.setVisibility(View.INVISIBLE);
                 }
 
                 if (!pass.isEmpty() && !pass2.isEmpty()){
@@ -103,11 +125,17 @@ public class RegisterActivity extends AppCompatActivity {
                         Log.d("Ruben","pass: "+ pass);
                         Log.d("Ruben","pass2: "+ pass2);
                         checkForm = false;
-                        message += "Las contraseñas no son iguales. ";
+
+                        errorPass.setVisibility(View.VISIBLE);
+                        errorPass.setText("Las contraseñas no son iguales.");
+
+                        //message += "Las contraseñas no son iguales. ";
                     }
                 }else{
                     checkForm = false;
-                    message += "Debes rellenar los campos de contraseña. ";
+                    errorPass.setVisibility(View.VISIBLE);
+                    errorPass.setText("Debes rellenar los campos de contraseña.");
+                   // message += "Debes rellenar los campos de contraseña. ";
                 }
 
                 if (!checkForm){

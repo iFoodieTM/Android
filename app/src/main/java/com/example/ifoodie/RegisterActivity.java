@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,32 +23,31 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    EditText editName;
     EditText editMail;
     EditText editPass;
+    EditText editPass2;
     EditText editUsername;
-    ImageButton imagePhoto;
     Button ok;
     Button back;
 
     Retrofit retrofit;
     BienestarApi bienestarApi;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        editName = findViewById(R.id.editName);
         editMail = findViewById(R.id.editMail);
         editPass = findViewById(R.id.editPass);
+        editPass2 = findViewById(R.id.editPass2);
         editUsername = findViewById(R.id.editUsername);
         back = findViewById(R.id.back);
-        imagePhoto = findViewById(R.id.imagePhoto);
         ok = findViewById(R.id.ok);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8888/Ruben/iFoodie/public/index.php/api/") // URL del servidor (API)
+                .baseUrl("http://10.0.2.2:8888/APIiFoodie/public/index.php/api/") // URL del servidor (API)
                 .addConverterFactory(ScalarsConverterFactory.create()) // Conversor de tipos primitivos
                 .addConverterFactory(GsonConverterFactory.create()) // Conversor de JSON
                 .build();
@@ -68,22 +70,52 @@ public class RegisterActivity extends AppCompatActivity {
 
 
     void btAccept() {
-        final String nombre = editName.getText().toString();
         final String mail = editMail.getText().toString();
         final String pass = editPass.getText().toString();
+        final String pass2 = editPass2.getText().toString();
         final String userName = editUsername.getText().toString();
-        final String photo = imagePhoto.toString();
 
-        Call<String> call = bienestarApi.postRegister(nombre, mail, userName, pass, photo);
+        Call<String> call = bienestarApi.postRegister(mail, userName, pass);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if (nombre.isEmpty() || mail.isEmpty() || userName.isEmpty()
-                        || pass.isEmpty() || photo.isEmpty()){
-                    Log.d("Ruben","Error: faltan campos por rellenar");
-                    Toast.makeText(RegisterActivity.this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
+                boolean checkForm = true;
+                String message = "";
+                if (!mail.isEmpty()){
+                    if (!isEmailValid(mail)){
+                        // no es un email valido
+                        checkForm = false;
+                        message += "El email no es válido. ";
+                    }
+                }else{
+                    checkForm = false;
+                    message += "El email esta vacío. ";
+                }
+
+                if (userName.isEmpty()){
+                    // el nombre de susuario esta vacio
+                    checkForm = false;
+                    message += "El nombre de usuario esta vacío. ";
+                }
+
+                if (!pass.isEmpty() && !pass2.isEmpty()){
+                    if (!pass.equals(pass2)){
+                        Log.d("Ruben","pass: "+ pass);
+                        Log.d("Ruben","pass2: "+ pass2);
+                        checkForm = false;
+                        message += "Las contraseñas no son iguales. ";
+                    }
+                }else{
+                    checkForm = false;
+                    message += "Debes rellenar los campos de contraseña. ";
+                }
+
+                if (!checkForm){
+                    Log.d("Ruben","Aviso: "+ message);
+                    Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                 } else {
-                    Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_LONG).show();
                     finish();
 
                 }
@@ -96,5 +128,11 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
+    }
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

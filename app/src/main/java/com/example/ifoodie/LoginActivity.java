@@ -10,7 +10,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+//import android.Pattern;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -29,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     Retrofit retrofit;
     BienestarApi bienestarApi;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         ok = findViewById(R.id.ok);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8888/Ruben/iFoodie/public/index.php/api/") // URL del servidor (API)
+                .baseUrl("http://10.0.2.2:8888/APIiFoodie/public/index.php/api/") // URL del servidor (API)
                 .addConverterFactory(ScalarsConverterFactory.create()) // Conversor de tipos primitivos
                 .addConverterFactory(GsonConverterFactory.create()) // Conversor de JSON
                 .build();
@@ -62,6 +66,7 @@ public class LoginActivity extends AppCompatActivity {
     public void btLogin() {
         final String email = editMail.getText().toString();
         final String pass = editPass.getText().toString();
+        final Intent intent = new Intent(this, FeedActivity.class);
 
         Call<String> call = bienestarApi.postLogin(email, pass);
 
@@ -69,11 +74,33 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
 
-                if (email.isEmpty() || pass.isEmpty()){
-                    Toast.makeText(LoginActivity.this, "Faltan campos por rellenar", Toast.LENGTH_SHORT).show();
+
+                boolean checkForm = true;
+                String message = "";
+
+                if (!email.isEmpty()){
+                    if (!isEmailValid(email)){
+                        // no es un email valido
+                        checkForm = false;
+                        message += "El email no es válido. ";
+                    }
+                }else{
+                    checkForm = false;
+                    message += "El email esta vacío. ";
+                }
+                if (pass.isEmpty()){
+
+                    checkForm = false;
+                    message += "La contraseña esta vacía. ";
+                }
+
+                if (!checkForm){
+                    Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(LoginActivity.this, "Login correcto", Toast.LENGTH_SHORT).show();
                     Log.d("Ruben",response.body());
+
+                    startActivity(intent);
                 }
             }
 
@@ -88,5 +115,12 @@ public class LoginActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RecoverActivity.class);
         startActivity(intent);
 
+    }
+
+    public static boolean isEmailValid(String email) {
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

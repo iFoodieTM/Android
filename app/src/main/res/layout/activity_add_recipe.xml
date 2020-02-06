@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addRecipe">
+    tools:context=".addRecipe"
+    android:background="@drawable/fondo2">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="20dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo_V2_miniatura"
+                android:maxWidth="30dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="105dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="75dp"
+                android:layout_marginBottom="25dp"
+                android:text="Guardar"
+                android:textColor="#006B60"
+                android:textSize="20dp"
+                app:fontFamily="@font/rajdhani_bold" />
+        </LinearLayout>
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="40dp"
+            android:hint="Titulo de la receta"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15dp"
+            android:text="Ingredientes"
+            app:fontFamily="@font/rajdhani_medium" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            android:inputType="text|textMultiLine"
+            android:hint="Introduzca los ingredientes de la receta"
+            android:background="#FFE6AD"
+            android:padding="15dp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            android:textSize="15dp"
+            android:text="Pasos para la receta"
+            app:fontFamily="@font/rajdhani_medium" />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="150dp"
+            android:inputType="text|textMultiLine"
+            android:hint="Introduzca los pasos a seguir para la receta"
+            android:background="#FFE6AD"
+            android:padding="15dp"
+            />
+        <!--<LinearLayout
+            android:id="@+id/layoutSteps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp">
+            <ImageView
+                android:id="@+id/addStep"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/add_button"/>
+            <EditText
+                android:id="@+id/textStep"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginTop="-15dp"
+                android:text="Añadir paso"
+                android:textColor="#006B60"
+                android:textSize="20dp"
+                app:fontFamily="@font/rajdhani_medium" />
+        </LinearLayout>-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/add_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="-5dp"
+                android:text="Añadir imagen"
+                android:textColor="#006B60"
+                android:textSize="20dp"
+                app:fontFamily="@font/rajdhani_medium" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="40dp">
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/add_button"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="-5dp"
+                android:text="Añadir video"
+                android:textColor="#006B60"
+                android:textSize="20dp"
+                app:fontFamily="@font/rajdhani_medium" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

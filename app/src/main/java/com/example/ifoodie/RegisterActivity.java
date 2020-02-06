@@ -12,6 +12,8 @@ import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +23,8 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
+
+import static com.google.android.material.snackbar.Snackbar.LENGTH_LONG;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -58,7 +62,7 @@ public class RegisterActivity extends AppCompatActivity {
         ok = findViewById(R.id.ok);
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8888/APIiFoodie/public/index.php/api/") // URL del servidor (API)
+                .baseUrl("http://10.0.2.2/APIiFoodie/public/index.php/api/") // URL del servidor (API)
                 .addConverterFactory(ScalarsConverterFactory.create()) // Conversor de tipos primitivos
                 .addConverterFactory(GsonConverterFactory.create()) // Conversor de JSON
                 .build();
@@ -67,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity {
     ok.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            btAccept();
+            btAccept(view);
         }
     });
 
@@ -80,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
 
-    void btAccept() {
+    void btAccept(final View view) {
         final String mail = editMail.getText().toString();
         final String pass = editPass.getText().toString();
         final String pass2 = editPass2.getText().toString();
@@ -88,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         Call<String> call = bienestarApi.postRegister(mail, userName, pass);
         call.enqueue(new Callback<String>() {
+
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 boolean checkForm = true;
@@ -143,7 +148,9 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_LONG).show();
                 } else {
 
-                    Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_LONG).show();
+
+                    Snackbar.make(view,"asd",LENGTH_LONG).show();
+                    //Toast.makeText(RegisterActivity.this, "Registro completado", Toast.LENGTH_LONG).show();
                     finish();
 
                 }

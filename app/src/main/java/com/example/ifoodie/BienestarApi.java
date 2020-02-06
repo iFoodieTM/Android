@@ -8,7 +8,7 @@ import retrofit2.http.POST;
 public interface BienestarApi {
 
     @FormUrlEncoded
-    @POST("register")
+    @POST("store")
     Call<String> postRegister(@Field("email") String email, @Field("user_name") String userName, @Field("password") String password);
 
     @FormUrlEncoded

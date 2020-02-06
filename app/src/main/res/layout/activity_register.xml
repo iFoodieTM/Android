@@ -19,20 +19,64 @@
             android:layout_height="25dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/BotonX"/>
+            android:src="@drawable/button_cross2"/>
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20sp"
-            android:text="@string/app_name"
-            android:textColor="@color/colorTitle"
-            android:textSize="50sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:text="iFoodie"
+            android:textColor="#000000"
+            android:textSize="70dp"
+            app:fontFamily="@font/rajdhani_bold"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Registro"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="25dp"
+            app:fontFamily="@font/rajdhani_medium"></TextView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginLeft="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="30dp"
+                android:text="Usuario"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                app:fontFamily="@font/rajdhani_bold"
+                ></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="15dp"
+                android:text="|"
+                android:textSize="20dp"
+                android:textAlignment="center"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="30dp"
+                android:text="Restaurante"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                app:fontFamily="@font/rajdhani_light"
+                android:id="@+id/RegisterRestaurante"></TextView>
+        </LinearLayout>
 
 
         <EditText
@@ -40,7 +84,7 @@
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
-            android:layout_marginTop="40sp"
+            android:layout_marginTop="30sp"
             android:hint="@string/email"
             android:textSize="20sp" />
         <TextView
@@ -58,7 +102,7 @@
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
-            android:layout_marginTop="40sp"
+            android:layout_marginTop="30sp"
             android:hint="@string/userName"
             android:textSize="20sp" />
         <TextView
@@ -76,7 +120,7 @@
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
-            android:layout_marginTop="40sp"
+            android:layout_marginTop="30sp"
             android:hint="@string/password"
             android:textSize="20sp" />
         <EditText
@@ -84,7 +128,7 @@
             android:layout_width="300sp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50sp"
-            android:layout_marginTop="40sp"
+            android:layout_marginTop="30sp"
             android:hint="Repetir contraseña"
             android:textSize="20sp" />
 
@@ -106,8 +150,8 @@
             android:layout_width="150sp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Register"
-            android:background="@color/colorRegister" />
+            android:text="Registrar"
+            android:background="@drawable/button_register" />
 
     </LinearLayout>
 

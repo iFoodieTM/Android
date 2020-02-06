@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".addRecipe"
+    tools:context=".AddRecipe"
     android:background="@drawable/fondo2">
 
     <LinearLayout
@@ -20,7 +20,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/logo_V2_miniatura"
+                android:src="@drawable/logo_miniatura"
                 android:maxWidth="30dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="105dp"/>

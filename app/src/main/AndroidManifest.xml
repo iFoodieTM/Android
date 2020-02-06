@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".addRecipe"></activity>
+        <activity android:name=".RegisterRestaurant"></activity>
+        <activity android:name=".AddRecipe" />
         <activity android:name=".FeedActivity" />
         <activity android:name=".RecoverActivity" />
         <activity android:name=".LoginActivity">

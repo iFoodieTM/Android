@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -35,10 +36,11 @@ public class RegisterActivity extends AppCompatActivity {
     TextView errorMail;
     TextView errorUser;
     TextView errorPass;
+    TextView registerRestaurant;
 
     EditText editUsername;
     Button ok;
-    Button back;
+    ImageView back;
 
     Retrofit retrofit;
     BienestarApi bienestarApi;
@@ -56,6 +58,7 @@ public class RegisterActivity extends AppCompatActivity {
         errorMail = findViewById(R.id.mailError);
         errorUser = findViewById(R.id.passError);
         errorPass = findViewById(R.id.userError);
+        registerRestaurant = findViewById(R.id.RegisterRestaurante);
 
         editUsername = findViewById(R.id.editUsername);
         back = findViewById(R.id.back);
@@ -72,6 +75,13 @@ public class RegisterActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             btAccept(view);
+        }
+    });
+
+    registerRestaurant.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            newView();
         }
     });
 
@@ -169,5 +179,11 @@ public class RegisterActivity extends AppCompatActivity {
         Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+    }
+    private void newView(){
+
+        Intent intent = new Intent(this, RegisterRestaurant.class);
+        startActivity(intent);
+
     }
 }

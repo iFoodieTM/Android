@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 
 import java.util.ArrayList;
 
-public class addRecipe extends AppCompatActivity {
+public class AddRecipe extends AppCompatActivity {
     LinearLayout layoutContainer;
     EditText nuevoPaso;
     ImageView añadirPaso;

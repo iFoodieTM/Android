@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:src="@drawable/logo_V2_miniatura"
+        android:src="@drawable/logo_miniatura"
         android:maxWidth="30dp"
         android:layout_marginTop="60dp"
         android:layout_marginLeft="110dp"/>
